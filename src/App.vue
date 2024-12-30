@@ -17,11 +17,16 @@
             <div class="mb-2">
               <email-input v-model:email="newsletterEmail"></email-input>
               
+            
               <!-- <email-input :modelValue="newsletterEmail"
               @update:modelValue="newsletterEmail = $event">
 
               </email-input> -->
             </div>
+            <div class="mb-2">
+              <EmojiInput v-model="emoji" :options="{ position: 'bottom' }" />
+            </div>
+            
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
@@ -32,16 +37,19 @@
 
 <script>
 import EmailInput from '@/components/EmailInput.vue';
+import EmojiInput from "@/components/EmojiInput.vue";
 
 export default { 
   name: "App",
   components: {
     EmailInput,
+    EmojiInput,
   },
   data() {
     return {
       newsletterName: "",
       newsletterEmail: "",
+      emoji: "",
     };
   },
   methods: {
@@ -50,6 +58,7 @@ export default {
         name: this.newsletterName,
         email: this.newsletterEmail,
       });
+      console.log("Emoji: ", this.emoji);
     },
   },
 };
