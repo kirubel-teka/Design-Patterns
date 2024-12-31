@@ -20,11 +20,21 @@
 <script>
 export default {
   name: "AppModal",
-  props: ["show"],
+  props: {
+    show: {
+      required: true,
+    },
+    scrollable: {
+      default: false,
+    },
+
+  },
+
   methods: {
     close() {
       this.$emit("hide");
     },
+
     handler(e) {
       if (e.code === 'Escape' && this.show) {
         this.close();
@@ -40,8 +50,23 @@ export default {
         console.log('closed it')
       }
     },
+
   },
-  created() {
+
+    watch: {
+      show: {
+        immediate: true,
+        handler(newVal) {
+          if (newVal && !this.scrollable) {
+          document.body.style.setProperty('overflow', 'hidden');
+        } else {
+          document.body.style.removeProperty('overflow');
+        }
+        }
+      }
+     },
+
+    created() {
     document.addEventListener('keydown', this.handler);
   },
 
@@ -56,7 +81,8 @@ export default {
     document.removeEventListener('click', this.handleOutsideClick, { capture: true });
     document.removeEventListener('keydown', this.handler);
   }
-};
+  }
+  
 </script> 
 
 
