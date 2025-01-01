@@ -34,11 +34,8 @@
       </div>
     </div>
 
-    <div class="mt-2 ml-2">
-      <button type="button" class="btn btn-primary" @click="open = true">
-        Open
-      </button>
-    </div>
+  <app-action></app-action>
+
 
     <p>
       
@@ -125,8 +122,8 @@ Morbi odio dui, lobortis at egestas id, tincidunt eu nulla. In hac habitasse pla
 
 <script>
 import EmailInput from '@/components/EmailInput.vue';
-import EmojiInput from "@/components/EmojiInput.vue";
-import AppModal from "@/components/Modal.vue";
+import EmojiInput from "@/components/EmojiInput.vue"; 
+import AppAction from './components/Action.vue';
 
 
 export default { 
@@ -134,14 +131,15 @@ export default {
   components: {
     EmailInput,
     EmojiInput,
-    AppModal,
+    AppAction,
+    
   },
   data() {
     return {
       newsletterName: "",
       newsletterEmail: "",
       emoji: "",
-      open: false,
+     
     };
   },
   methods: {
